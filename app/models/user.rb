@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
   validates :password, :length => { :minimum => 6, :allow_nil => true }
 
   has_many(
-    :cats,
-    class_name: "Cat",
+    :subs,
+    class_name: "Sub",
     foreign_key: :user_id,
     primary_key: :id,
     dependent: :destroy

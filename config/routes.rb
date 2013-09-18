@@ -5,5 +5,5 @@ Reddit::Application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
 
-  resources :subs, only: [:index, :show, :new, :create]
+  resources :subs
 end

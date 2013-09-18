@@ -1,1 +1,30 @@
-Form Stuff
+<% action = (sub.persisted? ? sub_url(sub) : subs_url) %>
+<% method = (sub.persisted? ? "put" : "post") %>
+<% message = (sub.persisted? ? "Update sub" : "Add sub") %>
+
+<form action="<%= action %>" method="post">
+  <input
+     name="_method"
+     type="hidden"
+     value="<%= method %>">
+  <input
+     name="authenticity_token"
+     type="hidden"
+     value="<%= form_authenticity_token %>">
+
+  <label for="sub_name">Name</label>
+  <input
+     id="sub_name"
+     name="sub[name]"
+     type="text">
+  <br>
+
+  <label for="sub_user_id">Mod Username</label>
+  <input
+     id="sub_user_id"
+     name="sub[user_id]"
+     type="text">
+  <br>
+
+  <input type="submit" value="<%= message %>">
+</form>
