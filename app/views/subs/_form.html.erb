@@ -12,19 +12,35 @@
      type="hidden"
      value="<%= form_authenticity_token %>">
 
-  <label for="sub_name">Name</label>
-  <input
-     id="sub_name"
-     name="sub[name]"
-     type="text">
-  <br>
-
-  <label for="sub_user_id">Mod Username</label>
-  <input
-     id="sub_user_id"
-     name="sub[user_id]"
-     type="text">
-  <br>
+  <% if method == "post" %>
+    <label for="sub_name">Name</label>
+    <input
+       id="sub_name"
+       name="sub[name]"
+       type="text">
+    <br>
+    <input
+       id="sub_user_name"
+       name="sub[user_name]"
+       type="hidden"
+       value=<%= current_user.user_name %>>
+    <br>
+  <% else %>
+    <label for="sub_name">Name</label>
+    <input
+       id="sub_name"
+       name="sub[name]"
+       type="text"
+       value=<%= sub.name %>>
+    <br>
+    <label for="sub_user_id">Mod Username</label>
+    <input
+       id="sub_user_name"
+       name="sub[user_name]"
+       type="text"
+       value=<%= current_user.user_name %>>
+    <br>
+  <% end %>
 
   <input type="submit" value="<%= message %>">
 </form>

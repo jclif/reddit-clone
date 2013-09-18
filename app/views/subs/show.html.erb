@@ -1,1 +1,9 @@
+<h1><%= @sub.name %></h1>
+
 <%= p @sub.inspect %>
+
+<% if current_user && current_user.id == @sub.user_id %>
+  <%= button_to "Edit", edit_sub_url(@sub), method: :get, class: "btn btn-small" %>
+  <%= button_to 'Destroy', sub_url(@sub),
+              :confirm => 'Are you sure?!', :method => :delete, class: "btn btn-small" %>
+<% end %>
