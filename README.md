@@ -1,4 +1,4 @@
 Reddit Clone
 ============
 
-A clone of reddit.
+A clone of reddit...
