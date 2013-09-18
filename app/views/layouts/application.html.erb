@@ -1,14 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Reddit</title>
+  <title>Reddit-Clone</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "https://js.stripe.com/v1/" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
-</html>
+  <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+    </head>
+    <body>
+      <header class="navbar navbar-fixed-top navbar-inverse">
+        <div class="navbar-inner">
+          <div class="container">
+            <%= link_to "Reddit-Clone", '/', id: "logo" %>
+            <nav>
+              <ul class="nav pull-right">
+                <li><%= link_to "Home", root_url %></li>
+                <li><%= link_to "Subs", subs_url %>
+                <% if current_user %>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <%= current_user.user_name %>
+                      <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><%= link_to "Profile", user_url(current_user), method: :get %>
+                      <li><%= link_to "Log out", '/session/', method: :delete%></li> <!-- TODO change to button_to -->
+                    </ul>
+                  </li>
+                <% else %>
+                  <li><%= link_to "Sign in", '/session/new' %></li>
+                <% end %>
+              </ul>
+            </nav>
+      </header>
+      <div class="container">
+        <%= yield %>
+        <footer class="footer">
+          <small>
+            <a href="/">Reddit-Clone</a>
+            by Yours Truely
+          </small>
+          <nav>
+            <ul>
+              <li><%= link_to "Help", root_url %></li>
+              <li><%= link_to "Legal", root_url %></li>
+              <li><%= link_to "Contact", root_url %></li>
+              <li><%= link_to "Issues",   'https://github.com/jclif/reddit-clone/issues' %></li>
+            </ul>
+          </nav>
+        </footer>
+      </div>
+    </div>
+    </body>
+  </html>
