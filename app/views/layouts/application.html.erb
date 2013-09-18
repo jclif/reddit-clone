@@ -27,7 +27,7 @@
                     </a>
                     <ul class="dropdown-menu">
                       <li><%= link_to "Profile", user_url(current_user), method: :get %>
-                      <li><%= link_to "Log out", '/session/', method: :delete%></li> <!-- TODO change to button_to -->
+                      <li><%= link_to "Log out", '/session/', method: :delete%></li><%# TODO change to button_to %>
                     </ul>
                   </li>
                 <% else %>

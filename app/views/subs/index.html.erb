@@ -2,8 +2,8 @@
 
 <% if current_user %>
   <%= button_to "Add Sub", new_sub_url, method: :get, class: "btn btn-small" %>
-<% end %>
+<% end %><br>
 
 <% @subs.each do |sub| %>
-  <div> <%= link_to "#{sub.name}", sub_url(sub) %> </div>
+  <h3> <%= link_to "#{sub.name}", sub_url(sub) %> </h3><br>
 <% end %>

@@ -9,4 +9,11 @@ class Sub < ActiveRecord::Base
   foreign_key: :user_id,
   primary_key: :id
 
+  has_many :linksubs,
+  class_name: "LinkSub",
+  foreign_key: :sub_id,
+  primary_key: :id
+
+  has_many :links, through: :linksubs, source: :link
+
 end

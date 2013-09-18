@@ -9,13 +9,17 @@ class User < ActiveRecord::Base
   validates :password_digest, :presence => { :message => "Password can't be blank" }
   validates :password, :length => { :minimum => 6, :allow_nil => true }
 
-  has_many(
-    :subs,
+  has_many :subs,
     class_name: "Sub",
     foreign_key: :user_id,
     primary_key: :id,
     dependent: :destroy
-  )
+
+  has_many :links,
+    class_name: "Link",
+    foreign_key: :user_id,
+    primary_key: :id,
+    dependent: :destroy
 
   def self.find_by_credentials(user_name, password)
     user = User.find_by_user_name(user_name)
