@@ -16,12 +16,12 @@ users = User.create([
 
 subs = Sub.create([
   {name: "test_sub1", user_id: 1},
-  {name: "test_sub1", user_id: 1}
+  {name: "test_sub2", user_id: 2}
 ])
 
 links = Link.create([
-  {title: "Post", url: "cats.com", body: "", user_id: 1},
-  {title: "Repost", url: "dogs.com", body: "test_body", user_id: 1}
+  {title: "Post", url: "http://www.cats.com", body: "", user_id: 1},
+  {title: "Repost", url: "www.dogs.com", body: "test_body", user_id: 1}
 ])
 
 linksubs = LinkSub.create([

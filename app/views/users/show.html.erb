@@ -1,1 +1,21 @@
-<%= p @user.inspect%>
+<h1><%= @user.user_name%></h1>
+<br>
+
+<img src="/assets/default_pic.png" width="200">
+
+<br>
+<hr>
+<br>
+
+<h2>Links</h2>
+<% @user.links.each do |link| %>
+  <%= link_to "#{p link.inspect}", link_url(link) %><br>
+<% end %>
+
+<hr>
+
+<h2>Subreddits Modded</h2>
+<% @user.subs.each do |sub| %>
+  <%= link_to "#{sub.name}", sub_url(sub) %><br>
+<% end %>
+

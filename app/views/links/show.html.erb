@@ -1,0 +1,9 @@
+<h1><a href=<%= @link.url %>><%= @link.title %></a></h1>
+<p>Posted by <%= link_to "#{@link.user.user_name}", user_url(@link.user) %> @ <%= @link.created_at %>
+<p>Body: <%= @link.body %>
+
+<% if current_user && current_user.id == @link.user_id %>
+  <%= button_to "Edit", edit_link_url(@link), method: :get, class: "btn btn-small" %>
+  <%= button_to 'Destroy', link_url(@link),
+              :confirm => 'Are you sure?!', :method => :delete, class: "btn btn-small" %>
+<% end %>

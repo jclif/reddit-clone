@@ -4,6 +4,11 @@ class Link < ActiveRecord::Base
 
   validates_presence_of :user_id, :title, :url
 
+  belongs_to :user,
+  class_name: "User",
+  foreign_key: :user_id,
+  primary_key: :id
+
   has_many :linksubs,
   class_name: "LinkSub",
   foreign_key: :link_id,

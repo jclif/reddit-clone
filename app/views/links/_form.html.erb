@@ -1,0 +1,74 @@
+<% action = (link.persisted? ? link_url(link) : links_url) %>
+<% method = (link.persisted? ? "put" : "post") %>
+<% message = (link.persisted? ? "Update link" : "Add link") %>
+
+<form action="<%= action %>" method=<%= method %>>
+  <input
+     name="_method"
+     type="hidden"
+     value="<%= method %>">
+  <input
+     name="authenticity_token"
+     type="hidden"
+     value="<%= form_authenticity_token %>">
+
+  <% if method == "post" %>
+    <label for="link_title">Title</label>
+    <input
+       id="link_title"
+       name="link[title]"
+       type="text"
+       value=<%= link.title %>>
+    <br>
+    <input
+       id="link_user_id"
+       name="link[user_id]"
+       type="hidden"
+       value=<%= current_user.id %>>
+    <br>
+    <label for="link_name">Body</label>
+    <input
+       id="link_body"
+       name="link[body]"
+       type="text"
+       value=<%= link.body %>>
+    <br>
+    <label for="link_url">URL</label>
+    <input
+       id="link_url"
+       name="link[url]"
+       type="text"
+       value=<%= link.url %>>
+    <br>
+  <% else %>
+    <label for="link_title">Title</label>
+    <input
+       id="link_title"
+       name="link[title]"
+       type="text"
+       value="">
+    <br>
+    <input
+       id="link_user_id"
+       name="link[user_id]"
+       type="hidden"
+       value=<%= link.user_id %>>
+    <br>
+    <label for="link_name">Body</label>
+    <input
+       id="link_body"
+       name="link[body]"
+       type="text"
+       value="">
+    <br>
+    <label for="link_url">URL</label>
+    <input
+       id="link_url"
+       name="link[url]"
+       type="text"
+       value="">
+    <br>
+  <% end %>
+
+  <input type="submit" value="<%= message %>">
+</form>

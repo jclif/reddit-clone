@@ -136,7 +136,6 @@ DEPENDENCIES
   jquery-rails
   quiet_assets
   rails (= 3.2.14)
-  rake (~> 10.1.0)
   sass-rails (~> 3.2.3)
   sqlite3
   thin
