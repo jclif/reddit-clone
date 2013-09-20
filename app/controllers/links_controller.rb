@@ -15,7 +15,7 @@ class LinksController < ApplicationController
   end
 
   def create
-    # TODO use url_with_protocol to ensure that protocol is present
+    params[:link][:url] = url_with_protocol(params[:link][:url])
     @link = Link.new(params[:link])
 
     if @link.save!
@@ -26,6 +26,27 @@ class LinksController < ApplicationController
     end
   end
 
-  # TODO !!! finish links controller and views !!!
+  def edit
+    @link = Link.find(params[:id])
+    @linksubs_string = @link.subs.map!{ |sub| sub.name }.join(" ")
+    fail
+  end
 
+  def update
+    @sub = Sub.find_by_id(params[:link][:url])
+
+    unless @sub
+      flash[:errors] = ["Subreddit doesn't exist"]
+      render :edit
+    else
+      @link = Link.find(params[:id])
+
+      if @link.update_attributes(params[:link])
+        redirect_to sub_url(@sub)
+      else
+        flash[:errors] = @sub.errors.full_messages
+        render :edit
+      end
+    end
+  end
 end

@@ -2,7 +2,7 @@
 <% method = (link.persisted? ? "put" : "post") %>
 <% message = (link.persisted? ? "Update link" : "Add link") %>
 
-<form action="<%= action %>" method=<%= method %>>
+<form action="<%= action %>" method="post">
   <input
      name="_method"
      type="hidden"
@@ -12,63 +12,42 @@
      type="hidden"
      value="<%= form_authenticity_token %>">
 
-  <% if method == "post" %>
     <label for="link_title">Title</label>
     <input
        id="link_title"
        name="link[title]"
        type="text"
-       value=<%= link.title %>>
+       value=<%= link.title.to_s %>>
     <br>
     <input
        id="link_user_id"
        name="link[user_id]"
        type="hidden"
-       value=<%= current_user.id %>>
+       value=<%= current_user.id.to_s %>>
     <br>
     <label for="link_name">Body</label>
     <input
        id="link_body"
        name="link[body]"
        type="text"
-       value=<%= link.body %>>
+       value=<%= link.body.to_s %>>
     <br>
     <label for="link_url">URL</label>
     <input
        id="link_url"
        name="link[url]"
        type="text"
-       value=<%= link.url %>>
+       value=<%= link.url.to_s %>>
     <br>
-  <% else %>
-    <label for="link_title">Title</label>
+    <label for="link_subs">Subreddits</label>
     <input
-       id="link_title"
-       name="link[title]"
+       id="link_subs"
+       name="link[subs]"
        type="text"
-       value="">
+       value=<%= link.url.to_s %>>
     <br>
-    <input
-       id="link_user_id"
-       name="link[user_id]"
-       type="hidden"
-       value=<%= link.user_id %>>
-    <br>
-    <label for="link_name">Body</label>
-    <input
-       id="link_body"
-       name="link[body]"
-       type="text"
-       value="">
-    <br>
-    <label for="link_url">URL</label>
-    <input
-       id="link_url"
-       name="link[url]"
-       type="text"
-       value="">
-    <br>
-  <% end %>
+
+
 
   <input type="submit" value="<%= message %>">
 </form>
